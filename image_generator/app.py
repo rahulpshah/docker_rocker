@@ -12,7 +12,9 @@ class DockerResource:
         """Handles POST requests"""
         dct = req.media
 	
-        new_dct = {"sys_packages": dct["system"], "lang_packages": dct["local"], "os": "ubuntu", "os_version": "latest"}
+        new_dct = {"os": "ubuntu", "os_version": "latest"}
+        new_dct.update(dct)
+
         dfile = docker.create_dockerfile()
 
         dockerfile = dfile.render(new_dct)

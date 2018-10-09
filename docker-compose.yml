@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+  ui:
+    container_name: ui
+    build:
+      context: ui
+      dockerfile: Dockerfile
+    volumes:
+      - './ui:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+  image_generator:
+    container_name: image_generator
+    build:
+      context: image_generator
+      dockerfile: Dockerfile
+    volumes:
+      - './image_generator:/opt/workdir'
+    ports:
+      - '8000:8000'
+

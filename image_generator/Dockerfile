@@ -6,4 +6,4 @@ WORKDIR /opt/workdir
 
 RUN pip install -U -r requirements.txt
 
-CMD ["gunicorn","-b", "0.0.0.0:8000", "app:api"]
+CMD ["gunicorn","-b", "0.0.0.0:8000", "--reload", "--log-level=debug", "app:api"]

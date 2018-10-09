@@ -18,12 +18,19 @@ class DockerCommand(object):
     self.keys = keys
 
   def render(self, dct):
-      template = Template(self.format)
-      for k in self.keys:
-        if not dct.get(k):
-          return None
-        
-      return template.render(**dct)
+    template = Template(self.format)
+    new_dct = {}
+    for k in self.keys:
+      val = dct.get(k)
+      if isinstance(val, list):
+        lst = set(filter(None, val))
+        new_dct[k] = list(lst)
+      else:
+        new_dct[k] = val
+
+      if not new_dct[k]:
+        return None
+    return template.render(**new_dct)
 
 def create_dockerfile():
   data = json.load(open("templates/data.json", "r"))

@@ -1,6 +1,6 @@
 
 [
   {"text": "FROM {{ os }}:{{ os_version }}", "keys": ["os", "os_version"]},
-  {"text": "RUN apt-get update && apt-get install -y --no-install-recommends \\\n\t{{\" \\\\\\n\\t\".join(sys_packages)  }}", "keys": ["sys_packages"]},
-  {"text": "RUN pip install -U --ignore-installed \\\n\t{{\" \\\\\\n\\t\".join(lang_packages)  }}", "keys": ["lang_packages"]}
+  {"text": "RUN apt-get update && apt-get install -y --no-install-recommends \\\n\t{{\" \\\\\\n\\t\".join(system)  }}", "keys": ["system"]},
+  {"text": "RUN pip install -U --ignore-installed \\\n\t{{\" \\\\\\n\\t\".join(local)  }}", "keys": ["local"]}
 ]
